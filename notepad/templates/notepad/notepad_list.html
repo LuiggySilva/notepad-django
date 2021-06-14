@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title> Notepads </title>
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <link rel="shortcut icon" href="{% static 'images/logo.ico' %}" />
+    </head>
+    <body>
+
+        <header>
+            <img src = "{% static 'images/logo.svg' %}" alt="logo" width="120" height="100"/>
+            <a href="{% url 'url_list' %}" class="logo">  <span>  Notepad  </span> </a>
+            <a href="{% url 'url_create' %}"> <button type="submit" class="bnt_effect"> NEW </button> </a>
+        </header>
+
+        <div id="container">
+            {% if list|length == 0 %}
+                <h2 style="color: #a1a1a1;"> <i> Empty... Create new Note </i> </h2>
+            {% else %}
+                {% for notepad in list %}
+                    <div class="notepad">
+                        <p class="notepad_name"> {{ notepad.name }} </p>
+                        <p class="notepad_date"> {{ notepad.dt_creation }} </p>
+                        <div class="notepad_manage">
+                            <div class="edit_bnt">
+                                <a href="{% url 'url_edit' notepad.id %}"><button class="bnt_effect"> EDIT </button></a>
+                            </div>
+                            <div class="">
+                                <a href="{% url 'url_view' notepad.id %}"><button class="bnt_effect"> VIEW </button></a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <br>
+    </body>
+</html>

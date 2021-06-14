@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title> {{ notepad.name }} </title>
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <link rel="shortcut icon" href="{% static 'images/logo.ico' %}" />
+    </head>
+    <body>
+
+        <header>
+            <img src = "{% static 'images/logo.svg' %}" alt="logo" width="120" height="100"/>
+            <a href="{% url 'url_list' %}" class="logo">  <span>  Notepad  </span> </a>
+            <a href="{% url 'url_remove' notepad.id %}"> <button type="submit" class="bnt_effect"> DELETE </button> </a>
+        </header>
+
+        <div class="container">
+            <div class="container_markdown">
+                <div class="notepad_info">
+                    <h1 class="notepad_name"> {{ notepad.name }} </h1>
+                    <h6 class="notepad_date"> {{ notepad.dt_creation }} </h6>
+                </div>
+                <div class="note">
+                    <pre>{{ notepad.note }}</pre>
+                </div>
+            </div> 
+        </div>
+
+    </body>
+</html>
